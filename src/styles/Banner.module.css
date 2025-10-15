@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.banner {
+  @apply flex flex-row w-full bg-cover bg-center justify-center items-center bg-yellow-100;
+}
