@@ -1,0 +1,31 @@
+@import 'tailwindcss';
+
+.mainMenu {
+  @apply sticky top-0 z-1000 border-b border-gray-200  bg-white shadow-md;
+}
+
+.mainMenu .nav-item {
+  @apply relative inline-block;
+  @apply px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ease-in-out;
+}
+
+.mainMenu .nav-item:hover {
+  @apply transform -translate-y-1;
+}
+
+.mainMenu .nav-item.active::after {
+  @apply content-[""] absolute bottom-0 left-0 right-0 h-0.5 
+  bg-gradient-to-r from-blue-600 to-blue-800 rounded-full;
+  border-radius: 1px;
+}
+
+@media (max-width: 768px) {
+  .mainMenu {
+    padding: 0.5rem 0;
+  }
+
+  .mainMenu .nav-item {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+}

@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+
+.container {
+  @apply w-full flex min-h-96;
+}
+
+.leftSpan {
+  @apply flex-1 bg-gray-100 p-4;
+  /* Left span styling - you can add content here */
+}
+
+.rightSpan {
+  @apply flex-1 p-4 flex items-center justify-center;
+}
+
+.description {
+  @apply mb-4 text-gray-700 text-2xl;
+}
