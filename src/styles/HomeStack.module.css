@@ -1,19 +1,28 @@
 @import "tailwindcss";
 
-
+/*
+  Responsive layout:
+  - On small screens (default) stack vertically (flex-col)
+  - At lg and above use flex-row
+  - Use min-w-0 on flex children so they can shrink properly when using min-width utilities
+  - Make .rightSpan scrollable when stacked by applying overflow-auto and a sensible max-height
+*/
 .container {
-  @apply w-full flex min-h-96;
+  @apply w-full flex flex-col lg:flex-row min-h-96;
 }
 
 .leftSpan {
-  @apply flex-1 bg-gray-100 p-4;
-  /* Left span styling - you can add content here */
+  /* full width when stacked, flex-1 (grow) on large screens */
+  @apply w-full lg:flex-1 min-w-0 bg-gray-100 p-4;
 }
 
 .rightSpan {
-  @apply flex-1 p-4 flex items-center justify-center;
+  /* full width when stacked, flex-1 on large screens, allow shrinking and scrolling */
+  @apply w-full lg:flex-1 min-w-0 p-4 flex items-center justify-center overflow-auto;
+  /* When stacked vertically, limit the height so overflow-auto becomes usable. Adjust as needed. */
+  max-height: 60vh;
 }
 
 .description {
-  @apply mb-4 text-gray-700 text-2xl;
+  @apply mb-4 text-gray-700 text-xs;
 }

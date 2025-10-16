@@ -9,6 +9,6 @@
 }
 
 .thirumannImage {
-  @apply block max-w-64 mb-4 object-cover;
+  @apply block max-w-48 object-cover;
 }
 
