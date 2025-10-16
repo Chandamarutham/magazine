@@ -8,21 +8,21 @@
   - Make .rightSpan scrollable when stacked by applying overflow-auto and a sensible max-height
 */
 .container {
-  @apply w-full flex flex-col lg:flex-row min-h-96;
+  @apply w-full flex flex-col lg:flex-row;
 }
 
 .leftSpan {
   /* full width when stacked, flex-1 (grow) on large screens */
-  @apply w-full lg:flex-1 min-w-0 bg-gray-100 p-4;
+  @apply w-full sm:flex-1 min-w-sm bg-gray-100 p-4 overflow-y-visible;
 }
 
 .rightSpan {
   /* full width when stacked, flex-1 on large screens, allow shrinking and scrolling */
-  @apply w-full lg:flex-1 min-w-0 p-4 flex items-center justify-center overflow-auto;
+  @apply w-full lg:flex-1 min-w-sm p-4 flex items-center justify-center overflow-y-visible;
   /* When stacked vertically, limit the height so overflow-auto becomes usable. Adjust as needed. */
   max-height: 60vh;
 }
 
 .description {
-  @apply mb-4 text-gray-700 text-xs;
+  @apply mb-4 text-gray-700 sm:text-xs text-sm;
 }

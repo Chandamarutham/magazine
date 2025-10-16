@@ -9,7 +9,7 @@ function MainMenu() {
     { name: 'Read', href: '#read' },
     { name: 'Listen', href: '#listen' },
     { name: 'Resources', href: '#resources' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Subscribe', href: '#subscribe' }
   ];
 
   const handleItemClick = (itemName) => {
