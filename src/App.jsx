@@ -3,6 +3,7 @@ import Banner from './components/Banner';
 import MagazineTitle from './components/MagazineTitle';
 import MainMenu from './components/MainMenu';
 import HomeStack from './components/HomeStack';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <MagazineTitle />
       <MainMenu />
       <HomeStack />
+      <Footer />
     </>
   );
 }

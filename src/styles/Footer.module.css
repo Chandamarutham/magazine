@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0f1724; /* deep navy */
+  --muted: #94a3b8;
+  --accent: #38bdf8; /* sky-400 */
+  --panel: #0b1220;
+}
+
+.footer {
+  /* keep the custom gradient and font stack, use Tailwind utilities for spacing/color */
+  background: linear-gradient(180deg, var(--bg), var(--panel));
+  @apply text-white px-6 py-12;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial;
+}
+
+.inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  @apply grid gap-8 items-start grid-cols-1 md:grid-cols-2;
+}
+
+.brand {
+  @apply flex flex-col gap-4;
+}
+
+.logo {
+  @apply flex items-center gap-3 font-bold text-lg;
+}
+
+.tagline {
+  color: var(--muted);
+  @apply text-sm max-w-prose;
+  max-width: 36ch;
+}
+
+.grid {
+  @apply grid gap-5 grid-cols-1 md:grid-cols-3;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.colTitle {
+  @apply font-semibold mb-2;
+}
+
+.linkList {
+  @apply list-none p-0 m-0 flex flex-col;
+  gap: 0.45rem; /* precise spacing kept */
+}
+
+.link {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.link:focus,
+.link:hover {
+  color: white;
+  transform: translateX(2px);
+}
+
+.newsletter {
+  @apply bg-white/5 p-3 rounded-md;
+}
+
+.formRow {
+  @apply flex gap-2 mt-2;
+}
+
+.input {
+  flex: 1 1 auto;
+  @apply px-3 py-2 rounded-md bg-transparent text-white;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.btn {
+  background: var(--accent);
+  color: #042024;
+  border: none;
+  @apply px-3 py-2 rounded-md font-semibold cursor-pointer;
+}
+
+.btn:focus {
+  outline: 3px solid rgba(56, 189, 248, 0.18);
+}
+
+.bottom {
+  margin-top: 1.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  padding-top: 1rem;
+  @apply flex gap-4 items-center justify-between;
+}
+
+.copyright {
+  color: var(--muted);
+  @apply text-sm;
+}
+
+.socials {
+  @apply flex gap-2;
+}
+
+.socialLink {
+  @apply inline-flex items-center justify-center rounded-md text-[--muted];
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.socialLink:focus,
+.socialLink:hover {
+  color: white;
+  transform: translateY(-2px);
+}
+
+@media (min-width: 780px) {
+  .inner {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}

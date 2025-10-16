@@ -6,7 +6,7 @@ export default function HomeStack() {
     return (
         <div className={styles.container}>
             <div className={styles.leftSpan}>
-                <img src={Akkarakkani} className={styles.logo} alt="அக்காரக்கனி" />
+                <img src={Akkarakkani} className={styles.image} alt="அக்காரக்கனி" />
             </div>
             <div className={styles.rightSpan}>
                 <div className={styles.textContent}>

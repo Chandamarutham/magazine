@@ -13,16 +13,34 @@
 
 .leftSpan {
   /* full width when stacked, flex-1 (grow) on large screens */
-  @apply w-full sm:flex-1 min-w-sm bg-gray-100 p-4 overflow-y-visible;
+  @apply w-full lg:flex-1 min-w-0 bg-gray-100 items-center justify-center p-4 overflow-visible;
+}
+
+.image {
+  @apply max-w-full h-auto;
 }
 
 .rightSpan {
   /* full width when stacked, flex-1 on large screens, allow shrinking and scrolling */
-  @apply w-full lg:flex-1 min-w-sm p-4 flex items-center justify-center overflow-y-visible;
-  /* When stacked vertically, limit the height so overflow-auto becomes usable. Adjust as needed. */
-  max-height: 60vh;
+  @apply w-full lg:flex-1 min-w-0 p-4 flex xl:items-center justify-center;
+  /* Default (small screens): allow the content to grow so long descriptions push other content
+     instead of overflowing/overlapping. */
+  max-height: none;
+  overflow: visible;
+}
+
+/* On large screens restore a constrained height and make the right pane scrollable if needed. */
+@media (min-width: 1024px) {
+  .rightSpan {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
 }
 
 .description {
-  @apply mb-4 text-gray-700 sm:text-xs text-sm;
+  @apply mb-4 text-gray-700 text-base leading-relaxed;
+  /* Prevent long words from overflowing / overlapping neighboring elements on small screens */
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
