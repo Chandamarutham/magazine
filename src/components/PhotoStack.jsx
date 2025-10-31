@@ -1,27 +1,20 @@
 import styles from '../styles/PhotoStack.module.css';
 
-export default function PhotoStack({ godPhoto = '', photos = [], className = '' }) {
+export default function PhotoStack() {
     // Default placeholder photos if none provided
-    const defaultPhotos = [
-        'https://via.placeholder.com/300x200/FF6B6B/FFFFFF?text=Photo+1',
-        'https://via.placeholder.com/300x200/4ECDC4/FFFFFF?text=Photo+2',
-        'https://via.placeholder.com/300x200/45B7D1/FFFFFF?text=Photo+3'
-    ];
-
-    const displayPhotos = photos.length >= 3 ? photos.slice(0, 3) : defaultPhotos;
-
+    const acharyas = [
+        './images/Dasarathy.jpg',
+        './images/Doddaiyachar.jpg',
+        './images/Periyappangar.jpg',
+        './images/Singrachar.jpg',
+        './images/Yoganrsimhan.jpg'
+    ]
     return (
-        <div className={`${styles.container} ${className}`}>
-            <div className={styles.leftSpan}>
-                <img src={godPhoto} className={styles.logo} alt="அக்காரக்கனி" />
-
-            </div>
-            <div className={styles.rightSpan}>
                 <div className={styles.photoStack}>
-                    {displayPhotos.map((photo, index) => (
+                    {acharyas.map((photo, index) => (
                         <div 
                             key={index} 
-                            className={`${styles.photo} ${styles[`photo${index + 1}`]}`}
+                            className={styles.photo}
                         >
                             <img 
                                 src={photo} 
@@ -31,7 +24,5 @@ export default function PhotoStack({ godPhoto = '', photos = [], className = '' 
                         </div>
                     ))}
                 </div>
-            </div>
-        </div>
     );
 }

@@ -1,1 +1,6 @@
 @import 'tailwindcss';
+
+
+.textContent {
+  @apply p-5;
+}

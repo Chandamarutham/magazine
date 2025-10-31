@@ -8,39 +8,26 @@
   - Make .rightSpan scrollable when stacked by applying overflow-auto and a sensible max-height
 */
 .container {
-  @apply w-full flex flex-col lg:flex-row;
+  @apply w-full h-64 flex flex-col lg:flex-row;
 }
 
 .leftSpan {
-  /* full width when stacked, flex-1 (grow) on large screens */
-  @apply w-full lg:flex-1 min-w-0 bg-gray-100 items-center justify-center p-4 overflow-visible;
+  /* full width when stacked; give each stacked pane half the container height so both are visible
+     on small screens. At lg and above it becomes flex-1 and fills the row. */
+  @apply w-full h-1/2 lg:flex-1 lg:h-full min-w-0 bg-gray-100 items-center justify-center p-1 overflow-visible;
 }
 
 .image {
-  @apply max-w-full h-auto;
+  /* make <img> elements preserve aspect ratio and fit inside their container */
+  @apply max-w-full p-1 w-full h-full object-contain;
 }
 
 .rightSpan {
-  /* full width when stacked, flex-1 on large screens, allow shrinking and scrolling */
-  @apply w-full lg:flex-1 min-w-0 p-4 flex xl:items-center justify-center;
-  /* Default (small screens): allow the content to grow so long descriptions push other content
-     instead of overflowing/overlapping. */
-  max-height: none;
-  overflow: visible;
+  /* full width when stacked; give stacked panes half the container height so both are visible
+     At lg and above it becomes a column that fills the container height. */
+  @apply w-full h-1/2 lg:flex-1 lg:h-full min-w-0 p-1 flex items-start justify-start overflow-auto;
 }
 
-/* On large screens restore a constrained height and make the right pane scrollable if needed. */
-@media (min-width: 1024px) {
-  .rightSpan {
-    max-height: 60vh;
-    overflow-y: auto;
-  }
-}
-
-.description {
-  @apply mb-4 text-gray-700 text-base leading-relaxed;
-  /* Prevent long words from overflowing / overlapping neighboring elements on small screens */
-  overflow-wrap: break-word;
-  word-break: break-word;
-  hyphens: auto;
+.textContent {
+  @apply p-5;
 }

@@ -1,0 +1,83 @@
+.container {
+  max-width: 960px;
+  margin: 24px auto;
+  padding: 0 16px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial;
+}
+
+.heading {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.listItem {
+  display: flex;
+}
+
+.openButton {
+  width: 100%;
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.openButton:hover {
+  background: #f8fafc;
+}
+
+.viewerWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.viewerHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.closeButton {
+  background: #111827;
+  color: #ffffff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.viewerTitle {
+  flex: 1;
+  font-weight: 600;
+}
+
+.external {
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.iframeWrap {
+  margin-top: 8px;
+  height: calc(100vh - 180px);
+}
+
+.iframe {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+}

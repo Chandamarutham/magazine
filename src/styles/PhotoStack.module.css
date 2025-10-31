@@ -1,81 +1,15 @@
 @import "tailwindcss";
 
-.container {
-  @apply w-full flex min-h-96;
-}
-
-.leftSpan {
-  @apply flex-1 bg-gray-100 p-4;
-  /* Left span styling - you can add content here */
-}
-
-.rightSpan {
-  @apply flex-1 p-4 flex items-center justify-center;
-}
-
 .photoStack {
-  @apply relative w-full h-full;
+  @apply flex w-full flex-row h-full box-border justify-center items-center gap-2 p-2 overflow-x-auto;
 }
 
 .photo {
-  @apply absolute rounded-lg shadow-lg transition-transform duration-300 hover:scale-105;
-  border: 3px solid white;
+  /* make each photo flex equally across the row while keeping fixed height
+    include padding in sizing, center the image so object-fit: contain shows the full photo */
+  @apply relative rounded-lg p-1 flex-1 min-w-0 flex items-center justify-stretch box-border h-48;
 }
 
 .photoImage {
-  @apply w-full h-full object-cover rounded-lg;
-}
-
-/* Base photo (bottom layer) */
-.photo1 {
-  @apply h-96;
-  z-index: 10;
-}
-
-/* Second photo (middle layer) - overlaps bottom right */
-.photo2 {
-  @apply h-96 z-30;
-  top: 32px;
-  left: 180px;
-}
-
-/* Third photo (top layer) - overlaps bottom right of second */
-.photo3 {
-  @apply h-96 z-50;
-  top: 64px;
-  left: 360px;
-  transform: rotate(-1deg);
-}
-
-/* Hover effects for better interactivity */
-.photo:hover {
-  z-index: 100;
-  transform: scale(1.05) rotate(0deg) !important;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .container {
-    @apply flex-col;
-  }
-
-  .photoStack {
-    @apply w-72 h-56;
-  }
-
-  .photo1,
-  .photo2,
-  .photo3 {
-    @apply w-56 h-40;
-  }
-
-  .photo2 {
-    top: 15px;
-    left: 30px;
-  }
-
-  .photo3 {
-    top: 30px;
-    left: 60px;
-  }
+  @apply block max-w-full h-full object-scale-down justify-baseline;
 }
