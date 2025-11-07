@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "../Theme.css";
+
+.titleContainer {
+  @apply flex flex-col w-full font-extrabold justify-center items-center bg-primary-dark;
+}
+
+.title {
+  @apply text-secondary-dark text-headline text-center;
+}

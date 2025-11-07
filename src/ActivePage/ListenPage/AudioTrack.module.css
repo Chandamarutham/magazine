@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@import "../../theme.css";
+
+.trackContainer {
+  @apply flex flex-col items-center justify-between p-2 border-b border-accent-light;
+}
+
+.trackTitle {
+  @apply w-full text-small lg:text-regular text-primary-dark;
+}
+
+.controlsContainer {
+  @apply w-full flex items-center gap-3;
+}
+
+.playPauseButton {
+  @apply h-4 w-4 text-small rounded-full text-secondary;
+  @apply lg:h-8 lg:w-8 lg:text-regular;
+}
+
+.timeDisplay {
+  @apply text-left text-xs tabular-nums text-zinc-600 dark:text-zinc-400;
+}
+
+.seekSlider {
+  --webkit-appearance: none;
+  @apply flex-1 appearance-none w-full h-2 border-accent-light bg-accent-light opacity-30 border cursor-pointer;
+}
+
+.seekSlider::-webkit-slider-thumb {
+  --webkit-appearance: none;
+  @apply appearance-none w-4 h-4 bg-secondary cursor-pointer;
+}
+
+.seekSlider::-moz-range-thumb {
+  @apply w-4 h-4 bg-secondary cursor-pointer;
+}
+
+.durationDisplay {
+  @apply text-right text-xs tabular-nums text-zinc-600 dark:text-zinc-400;
+}

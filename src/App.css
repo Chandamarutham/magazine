@@ -1,6 +1,2 @@
-@import 'tailwindcss';
-
-
-.textContent {
-  @apply p-5;
-}
+@import "tailwindcss";
+@import "./Theme.css";

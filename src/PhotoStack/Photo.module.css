@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@import "../Theme.css";
+
+.photoContainer {
+  @apply flex flex-row items-center justify-around p-2 w-full h-full;
+}
+
+.photoImage {
+  @apply max-w-full max-h-full object-contain rounded-lg shadow-md;
+}
+
+.photoCaption {
+  @apply mt-4 text-regular text-center p-2 text-primary-dark font-tamil;
+}
+
+.photoCaption2 {
+  @apply text-black text-small mt-3;
+}

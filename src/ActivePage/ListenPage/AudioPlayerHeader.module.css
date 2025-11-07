@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@import "../../Theme.css";
+
+
+.contentHeader {
+  @apply flex mb-2 p-4 flex-col items-center justify-between border-b border-secondary;
+  @apply lg:flex-row ;
+}
+
+.backButton {
+   @apply max-w-24 mb-2 px-3 py-2 font-medium bg-primary-dark text-secondary-dark rounded hover:bg-accent-light;
+   @apply lg:mb-0;
+}
+
+.pageDescription {
+  @apply text-regular font-semibold;
+  @apply lg:text-subtitle;
+}

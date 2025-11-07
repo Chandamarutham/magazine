@@ -1,0 +1,30 @@
+@import "tailwindcss";
+@import "../../theme.css";
+
+.listContainer {
+  @apply min-h-64 mt-4;
+}
+
+.heading {
+  @apply text-xl font-semibold;
+}
+
+.list {
+  @apply list-none p-0 m-0 grid gap-2;
+}
+
+.listItem {
+  @apply flex;
+}
+
+.openButton {
+  @apply text-left px-3 py-3.5 font-tamil text-regular cursor-pointer;
+}
+
+.serialNumber {
+  @apply w-8 text-center font-mono text-sm text-secondary mr-2;
+}
+
+.issueTitle {
+  @apply flex-1 font-tamil text-regular text-secondary hover:text-accent-light;
+}

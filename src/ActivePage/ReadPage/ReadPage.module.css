@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@import "../../Theme.css";
+
+.viewerWrap {
+  @apply flex flex-col gap-2;
+}
+
+
+

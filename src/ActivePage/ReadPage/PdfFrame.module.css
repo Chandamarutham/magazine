@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@import "../../Theme.css";
+
+.iframeWrap {
+  @apply w-full mt-2;
+  height: calc(100vh - 180px);
+}
+
+.iframe {
+  @apply w-full h-full border border-solid accent-accent-light rounded-md;
+}
+

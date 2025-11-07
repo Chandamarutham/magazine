@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@import "../Theme.css";
+
+.footerLinkColumn {
+  @apply mb-8 w-full px-2;
+}
+
+.columnTitle {
+  @apply font-semibold mb-2 text-white text-regular;
+  @apply lg:text-subtitle;
+}
+
+.linkItem {
+  @apply text-gray-300 cursor-pointer hover:text-primary transition-colors duration-150 text-medium mb-2;
+  @apply lg:text-regular;
+}

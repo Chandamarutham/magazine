@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@import "../Theme.css";
+
+.desktopMenu {
+  @apply hidden;
+  @apply md:flex md:flex-1 md:justify-center md:space-x-2;
+}
+
+.desktopMenu .navItem {
+  @apply relative inline-block px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ease-in-out;
+}
+
+.desktopMenu .navItem:hover {
+  @apply bg-secondary text-primary-light;
+}
+
+.desktopMenu .navItem:focus {
+  @apply outline-none text-primary-light bg-secondary border-b-2 border-primary-dark;
+}

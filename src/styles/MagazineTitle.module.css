@@ -1,9 +1,0 @@
-@import "tailwindcss";
-
-.titleContainer {
-  @apply flex flex-col w-full font-bold justify-center items-center py-2 bg-indigo-900;
-}
-
-.title {
-  @apply  text-white text-5xl text-center;
-}

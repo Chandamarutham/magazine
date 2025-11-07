@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@import "../../theme.css";
+
+
+.listenPageContainer {
+  @apply min-h-screen p-8;
+}
+
+.audioList {
+  @apply flex flex-col gap-y-2;
+}

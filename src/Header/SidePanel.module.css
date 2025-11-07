@@ -1,0 +1,15 @@
+@import "tailwindcss";
+@import "../Theme.css";
+
+.sidePanelContainer {
+  @apply shrink-0 flex flex-col mx-2 items-center justify-center bg-primary h-full max-w-28;
+}
+
+.sidePanelImage {
+  @apply h-20 w-20 rounded-full object-cover border bg-secondary-dark;
+  @apply lg:h-24 lg:w-24;
+}
+
+.acharyaName {
+  @apply font-tamil text-center text-small text-secondary;
+}

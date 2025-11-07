@@ -1,0 +1,36 @@
+@import "tailwindcss";
+@import "../../Theme.css";
+
+.title {
+    @apply text-title font-extrabold text-center text-secondary mb-4;
+}
+
+.albumsGrid {
+    @apply grid grid-cols-1 gap-4 border-t border-primary-dark pt-4;
+    @apply sm:grid-cols-2;
+    @apply lg:grid-cols-3;
+}
+
+.albumItem {
+    @apply border border-accent-light rounded-md overflow-hidden shadow-md hover:bg-primary;
+}
+
+.albumButton{
+    @apply w-full p-2 cursor-pointer;
+}
+
+.albumThumbnail {
+    @apply w-full rounded-sm object-contain;
+}
+
+.albumTitle{
+    @apply text-center text-regular text-contrast-dark font-semibold font-tamil;
+}
+
+.albumDate {
+    @apply text-center font-medium text-secondary;
+}
+
+.albumPlace {
+    @apply text-center text-small text-secondary font-tamil;
+}

@@ -1,0 +1,57 @@
+@import "tailwindcss";
+@import "../../Theme.css";
+
+.errorMessage {
+  @apply text-center text-red-600 mt-4;
+}
+
+.viewIssueWrapper {
+  @apply flex flex-col gap-3 p-2;
+}
+
+.articlesList {
+  @apply flex flex-col gap-3;
+}
+
+.articleBlock {
+  @apply border border-light-indigo rounded-md overflow-hidden bg-white shadow-sm;
+}
+
+.articleButton {
+  @apply w-full text-left px-3 py-2 flex items-center gap-2 bg-light-indigo hover:bg-accent-light transition-colors;
+}
+
+.articleButtonExpanded {
+  @apply w-full text-left px-3 py-2 flex items-center gap-2 bg-secondary hover:bg-blue-200 transition-colors;
+}
+
+.chevron,
+.articleTitle {
+  @apply text-secondary text-medium;
+}
+
+.articleButtonExpanded .articleTitle,
+.articleButtonExpanded .chevron {
+  @apply text-secondary-dark;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .articleButton:hover .articleTitle,
+  .articleButton:hover .chevron {
+    @apply text-secondary-dark;
+  }
+
+  .articleButtonExpanded:hover .chevron,
+  .articleButtonExpanded:hover .articleTitle {
+    /* Keep high contrast on hover for expanded state (avoid matching bg-secondary) */
+    @apply text-secondary-dark;
+  }
+}
+
+.pdfFrameWrapper {
+  @apply p-2 bg-white;
+}
+
+.emptyState {
+  @apply text-center text-gray-500 mt-4;
+}

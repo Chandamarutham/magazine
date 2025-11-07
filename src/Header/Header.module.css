@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@import "../Theme.css";
+
+.header {
+  @apply w-full bg-primary font-tamil;
+}
+

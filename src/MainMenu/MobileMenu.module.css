@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@import "../Theme.css";
+
+.mobileTopBar {
+  @apply w-full flex flex-1 space-x-2 justify-center;
+  @apply lg:hidden;
+}
+
+.mobileTopBar .mobileNavItem {
+  @apply relative inline-block px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ease-in-out;
+}
+
+.mobileTopBar .mobileNavItem:hover {
+  @apply bg-secondary text-primary-light;
+}
+
+.mobileTopBar .mobileNavItem:focus {
+  @apply outline-none text-primary-light bg-secondary border-b-2 border-primary-dark;
+}
+
+.mobileMenuButton {
+  @apply p-2 rounded-full hover:bg-gray-100 absolute right-2 top-1/2 transform -translate-y-1/2;
+  @apply md:hidden;
+}
+
+.menuIcon {
+  @apply text-gray-600 w-5 h-5 align-middle;
+}

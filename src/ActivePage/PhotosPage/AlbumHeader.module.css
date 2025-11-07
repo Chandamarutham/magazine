@@ -1,0 +1,30 @@
+@import "tailwindcss";
+@import "../../Theme.css";
+
+.albumHeader {
+  @apply flex mb-6 flex-col items-center justify-between border-b border-secondary;
+  @apply lg:flex-row ;
+}
+
+.backButton {
+  @apply max-w-24 px-3 py-2 font-medium bg-primary-dark text-secondary-dark rounded hover:bg-accent-light;
+}
+
+.albumInformation {
+  @apply flex-1 pb-2 ml-4 my-4 ;
+}
+
+.albumTitle {
+  @apply text-regular font-semibold;
+  @apply lg:text-subtitle;
+}
+
+.albumMeta {
+  @apply text-medium pb-2 text-secondary-light border-b border-gray-200 mb-2;
+  @apply lg:text-regular;
+}
+
+.albumDescription {
+  @apply text-medium;
+  @apply lg:text-regular;
+}

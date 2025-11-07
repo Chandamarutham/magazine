@@ -1,0 +1,23 @@
+@import "tailwindcss";
+@import "../../theme.css";
+
+
+.paragraph {
+  @apply text-regular font-tamil leading-7;
+}
+
+.heading {
+  @apply text-subtitle font-tamil font-semibold text-primary-dark;
+}
+
+.table {
+  @apply w-full border border-secondary-light;
+}
+
+.firstColumn {
+  @apply bg-primary-dark px-4 text-secondary-dark text-regular font-semibold border-b;
+}
+
+.dataColumn {
+  @apply px-4 text-regular text-primary-dark border-b;
+}

@@ -1,0 +1,6 @@
+@import "Tailwindcss";
+@import "../Theme.css";
+
+.container {
+  @apply max-w-5xl mx-auto p-4 font-tamil font-normal text-regular;
+}

@@ -1,0 +1,15 @@
+@import "tailwindcss";
+@import "../../Theme.css";
+
+.viewerHeader {
+  @apply flex items-center justify-between mb-2 p-4 border-b border-secondary;
+}
+
+.buttonControl {
+  @apply max-w-24 px-3 py-2 font-medium bg-primary-dark text-secondary-dark rounded hover:bg-accent-light;
+}
+
+.viewerTitle {
+  @apply flex-1 text-secondary-light text-regular text-right font-tamil;
+  @apply lg:font-semibold;
+}

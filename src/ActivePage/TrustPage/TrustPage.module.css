@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@import "../../Theme.css";
+
+.container {
+  @apply max-w-4xl mx-auto;
+}
+
+.title {
+  @apply text-3xl font-bold mb-4;
+}
+
+.description {
+  @apply text-lg text-gray-700;
+}
+
+.list {
+  @apply list-decimal list-inside;
+}
+
+.listitem {
+  @apply pb-2 mb-2;
+}

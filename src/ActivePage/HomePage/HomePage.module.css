@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "../../Theme.css";
+
+.textContent {
+    @apply max-w-4xl mx-auto;
+}
+
+.description {
+  @apply text-lg text-gray-700;
+}

@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "../Theme.css";
+
+.container {
+  @apply w-full mx-auto h-64 flex flex-col shadow-md;
+}
+
+.inner {
+  @apply max-w-3xl mx-auto h-full;
+}

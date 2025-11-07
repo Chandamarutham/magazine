@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@import "../Theme.css";
+
+.footer {
+  @apply bg-linear-to-l from-deep-navy to-panel text-white px-6 py-8;
+}
+
+.footerTitle {
+  @apply flex flex-row max-w-3xl mx-auto text-regular font-bold mb-8 p-2;
+}
+
+.logoImage {
+  @apply w-9 h-9 mr-3;
+}
+
+.brand {
+  @apply flex flex-col text-left;
+}
+
+.tagline {
+  @apply text-small text-gray-300;
+}
+
+.inner {
+  @apply grid grid-cols-2 max-w-3xl mx-auto;
+  @apply lg:grid-cols-3 lg:justify-between;
+}
+
+.copyright {
+  @apply text-gray-400 text-small text-center;
+}
