@@ -3,11 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
 import { useRef, useState, useEffect } from "react";
 
+function buildDriveUrl(locn, filename) {
+    // Using S3 bucket with CloudFront CDN
+    return `https://d3hsmwayyrfuvx.cloudfront.net/${locn}/${filename}`;
+}
 
-// Custom-tailored audio track with Tailwind-styled controls and
-// single-track playback coordination via currentPlayingId.
-// Props: { audioFile: { id, title, file }, currentPlayingId, setCurrentPlayingId }
-export default function AudioTrack({ audioFile, currentPlayingId, setCurrentPlayingId }) {
+export default function AudioTrack({ location, audioFile, currentPlayingId, setCurrentPlayingId }) {
     const audioRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [time, setTime] = useState(0);
@@ -26,9 +27,15 @@ export default function AudioTrack({ audioFile, currentPlayingId, setCurrentPlay
             setCurrentPlayingId?.(null);
         };
         const onError = () => {
-            // Pause and reset minimal state on load/playback error
+            // Pause and reset minimal state on load/playback error and log details
             try { el.pause(); } catch { /* no-op */ }
             setIsPlaying(false);
+            try {
+                // el.error is a MediaError; log its code and currentSrc
+                console.error('Audio element error', el.currentSrc, el.error);
+            } catch (e) {
+                console.error('Audio error handler failed', e);
+            }
         };
 
         el.addEventListener("timeupdate", onTime);
@@ -43,7 +50,12 @@ export default function AudioTrack({ audioFile, currentPlayingId, setCurrentPlay
         };
     }, [setCurrentPlayingId]);
 
-    // Ensure metadata loads so duration is available before play
+    // Build the final audio src for this track. audioFile.file may be a full URL
+    // or a relative path; location is used as a folder fallback.
+    const audioSrc = buildDriveUrl(location, audioFile?.file);
+
+    // Ensure metadata loads so duration is available before play. Depend on
+    // audioSrc so we react when the final source changes.
     useEffect(() => {
         const el = audioRef.current;
         if (!el) return;
@@ -55,7 +67,7 @@ export default function AudioTrack({ audioFile, currentPlayingId, setCurrentPlay
             // Calling load() prompts the browser to fetch metadata when preload allows it
             el.load();
         } catch { /* no-op */ }
-    }, [audioFile?.file]);
+    }, [audioSrc]);
 
     // Pause this track if another one becomes current
     useEffect(() => {
@@ -132,9 +144,10 @@ export default function AudioTrack({ audioFile, currentPlayingId, setCurrentPlay
             {/* Hidden/native audio element without controls */}
             <audio
                 ref={audioRef}
-                src={audioFile?.file || ""}
+                src={audioSrc}
                 preload="metadata"
                 playsInline
+                crossOrigin="anonymous"
                 className="hidden"
             />
 

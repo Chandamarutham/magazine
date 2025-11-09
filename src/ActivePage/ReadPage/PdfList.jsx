@@ -1,51 +1,51 @@
 export const PdfList = [
     {
         title: 'அக்டோபர் 2025',
-        id: '14utPS_pJ8PGfDe6RfNZCdmwSPEfOb6Zn',
+        id: '001',
         articles: [
             {
                 name: "முன் அட்டை",
-                id: "1me7O5OXZB6jenTuVbwPKqTY8c6t2mIbN",
+                id: "9e1q6069ad065b6e8409784e73350b67e63d7",
             },
             {
                 name: "காஞ்சி கருட சேவையும் கோபுர தரிசனமும்",
-                id: "1tu32gf-6K39zLBCKuIcVX9PIiS5jR0t3",
+                id: "9e1q6fff68defcebd4186894963199a89c455",
             },
             {
                 name: "போற்றி பணிந்தோம் ஏற்று நடத்துகவே!",
-                id: "1r7ZIqUcqN63YK9CCaJ1tqlEsdVwTPaQv",
+                id: "9e1q6e5c5b777ca4b4ceb9352ba8e37bfbef0",
             },
             {
                 name: "எழுபத்துநான்கு சிம்ஹாஸநாதிபதிகள்",
-                id: "1MkViJvTxk9uWYolcXF8n6dcQbKrpHarJ",
+                id: "9e1q6456f1c247c964bf99790414c23884f10",
             },
             {
                 name: "நம்மவர்களைப் போற்றுவோம்",
-                id: "1qsufIhsvKyPVSKCp3mwEF52xk7wlLjM6",
+                id: "9e1q6a2ba71bcebeb4b6693983c2ad2d61038",
             },
             {
                 name: "திருப்பாவை பகுதி 1",
-                id: "13P6Do3MF2a4T-UWWIx8yncDFk7McTN1m",
+                id: "9e1q6cd3c2cff7c4c4363a4cf2ca8da9728cd",
             },
             {
                 name: "திருப்பாவை பகுதி 2",
-                id: "1F9Rq_HYgL9JAblOqFqrA-k0ririfRTEm",
+                id: "9e1q69e0ba739dedb4f0da1f7ca0a184b224c",
             },
             {
                 name: "திருப்பாவை பகுதி 3",
-                id: "1cDaGlN3vx9AGJkBwkkpxFMVmipq8ln0F",
+                id: "9e1q60d70a393249b45d191e1b6c3c2753d98",
             },
             {
                 name: "திருப்பாவை பகுதி 4",
-                id: "1wGiGVntgVdhEuCMN70AAMSTDDkhvjVvt",
+                id: "9e1q6ebab70c39eda49a9b85f9e1f95a31b91",
             },
             {
                 name: "திருப்பாவை பகுதி 5",
-                id: "1JeUTNJWlDiuzY4zQo9HSFUPjQDkDVsk_",
+                id: "9e1q6163c81dd1c6f4e8a89b58e20f5c99c8b",
             },
             {
                 name: "பின் அட்டை",
-                id: "1el06fmnNrHkBFC-2f-4HoQpOx1_P5kB7",
+                id: "9e1q62ae4a94749b14f66aa9d42dc35c131eb",
             },
         ],
     },

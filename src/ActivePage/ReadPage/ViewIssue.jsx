@@ -6,7 +6,7 @@ import ViewerHeader from './ViewerHeader';
 import PdfFrame from './PdfFrame';
 
 function getPdfUrlFromId(id) {
-    return `https://drive.google.com/file/d/${id}/preview`;
+    return `https://workdrive.zohoexternal.in/embed/${id}?toolbar=false&appearance=light&themecolor=blue`;
 }
 
 export default function ViewIssue({ selected, setSelected }) {

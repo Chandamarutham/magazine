@@ -2,11 +2,10 @@ import styles from './Album.module.css'
 import AlbumHeader from './AlbumHeader';
 
 
-function buildDriveUrl(id) {
-    // Public Google Drive image URL suitable for <img src>
-    return `https://lh3.googleusercontent.com/d/${id}=w2048`;
+function buildDriveUrl(locn, id) {
+    // Using S3 bucket with CloudFront CDN
+    return `https://d3hsmwayyrfuvx.cloudfront.net/Photos/${locn}/${id}`;
 }
-
 export default function Album({ activeAlbum, setActiveAlbum }) {
 
     return (
@@ -17,11 +16,11 @@ export default function Album({ activeAlbum, setActiveAlbum }) {
             {activeAlbum ? (
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {activeAlbum.photos?.map((p) => {
-                        const src = buildDriveUrl(p.id)
+                        const src = buildDriveUrl(activeAlbum.folder, p.id)
                         return (
                             <figure key={p.photo_num ?? p.id} className="bg-white rounded-lg overflow-hidden shadow-sm ring-1 ring-black/5">
                                 <div className={`${styles.imageWrap} bg-gray-100`}>
-                                    <img
+                                   <img
                                         className={`${styles.image}`}
                                         src={src}
                                         alt={p.caption || `Photo ${p.photo_num}`}

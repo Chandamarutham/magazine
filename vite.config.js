@@ -5,4 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/', // The GitHub repo name
+  optimizeDeps: {
+    include: ["pdfjs-dist/legacy/build/pdf.worker.min.js"]
+  },
 })

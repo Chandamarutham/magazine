@@ -2,9 +2,9 @@ import styles from './AlbumsList.module.css';
 import { PhotoAlbum } from './PhotoData';
 
 
-function buildDriveUrl(id) {
-    // Public Google Drive image URL suitable for <img src>
-    return `https://lh3.googleusercontent.com/d/${id}=w2048`;
+function buildDriveUrl(locn, id) {
+    // Using S3 bucket with CloudFront CDN
+    return `https://d3hsmwayyrfuvx.cloudfront.net/Photos/${locn}/${id}`;
 }
 
 export default function AlbumsList({ setActiveAlbum }) {
@@ -16,7 +16,7 @@ export default function AlbumsList({ setActiveAlbum }) {
                     {PhotoAlbum.map((album, index) => (
                         <li key={index} className={styles.albumItem}>
                             <button onClick={() => setActiveAlbum(album)} className={styles.albumButton}>
-                                <img src={buildDriveUrl(album.thumbnail)} alt={album.event} className={styles.albumThumbnail} />
+                                <img src={buildDriveUrl(album.folder, album.thumbnail)} alt={album.event} className={styles.albumThumbnail} />
                                 <p className={styles.albumTitle}>{album.event}</p>
                                 <p className={styles.albumDate}>{new Date(album.date).toLocaleDateString()}</p>
                                 <p className={styles.albumPlace}>{album.place}</p>
