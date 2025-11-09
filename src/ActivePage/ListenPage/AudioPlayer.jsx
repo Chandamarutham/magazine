@@ -8,6 +8,7 @@ export default function AudioPlayer({ selected, setSelected }) {
     // MP3 & M4A files data
     const audioFiles = useMemo(() => selected?.articles ?? [], [selected]);
     const audioTitle = useMemo(() => selected?.issueTitle || 'Selected Issue', [selected]);
+    const audioFolder = useMemo(() => selected?.issueFolder || '', [selected]);
 
     return (
         <div className={styles.listenPageContainer}>
@@ -20,6 +21,7 @@ export default function AudioPlayer({ selected, setSelected }) {
                 {audioFiles.map((audioFile) => (
                     <AudioTrack
                         key={audioFile.id}
+                        location={audioFolder}
                         audioFile={audioFile}
                         currentPlayingId={currentPlayingId}
                         setCurrentPlayingId={setCurrentPlayingId}
