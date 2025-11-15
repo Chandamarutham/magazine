@@ -2,9 +2,9 @@ name: Build and Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ Version3 ]
+    branches: [ production ]
   pull_request:
-    branches: [ Version3 ]
+    branches: [ production ]
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:

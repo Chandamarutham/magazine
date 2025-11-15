@@ -27,7 +27,10 @@ reserved_keys = {"timestamp", "name", "type", "reference"}
 # --- Business requirements starts here ---
 table = dynamodb.Table("subscription_tbl")
 all_fields: list = [
-    "email_or_phone",  # This is the primary key
+    "id",  # This is the primary key & computed field
+    "email_address", # The form should accept both email and phone; indexed
+    "phone_number", # The form should accept both email and phone; indexed
+    "contact_preference", 
     "timestamp",
     "full_name",  # This is indexed
     "thirumaligai",
@@ -44,7 +47,6 @@ all_fields: list = [
 ]
 
 required_fields: list = [
-    "email_or_phone",
     "full_name",
     "address_line_1",
     "city",
@@ -52,6 +54,10 @@ required_fields: list = [
     "state_or_province",
     "country",
     "authorisation",
+]
+
+tradeoff_fields: list = [
+    {"email_address", "phone_number"},
 ]
 
 computed_fields = {
@@ -133,6 +139,21 @@ def make_response(status_code, body, event) -> dict:
         "headers": headers,
         "body": json_body,
     }
+
+
+def validate_tradeoff_fields(item) -> bool:
+    """Validate that at least one field from each tradeoff group is present.
+
+    Args:
+        item (dict): The item to validate.
+
+    Returns:
+        bool: True if valid, else False.
+    """
+    for group in tradeoff_fields:
+        if not any(item.get(field) for field in group):
+            return False
+    return True
 
 
 def get_valid_method(event) -> tuple:
@@ -232,6 +253,21 @@ def get_valid_input(event, method, body) -> tuple:
         for field in required_fields:
             if not item.get(field):
                 return None, 400, {"message": f"Missing required field: {field}"}
+    if not validate_tradeoff_fields(item):
+        missing_groups = [
+            group
+            for group in tradeoff_fields
+            if not any(item.get(field) for field in group)
+        ]
+        logger.debug("Missing tradeoff fields from groups: %s", missing_groups)
+        return (
+            None,
+            400,
+            {
+                "message": f"At least one field required from each of the following groups: {missing_groups}"
+            },
+        )
+
     return item, 200, None
 
 

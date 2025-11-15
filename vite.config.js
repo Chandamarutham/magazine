@@ -6,6 +6,9 @@ export default defineConfig({
   plugins: [react()],
   base: '/', // The GitHub repo name
   optimizeDeps: {
-    include: ["pdfjs-dist/legacy/build/pdf.worker.min.js"]
+    include: [
+      "@aws-crypto/sha256-browser",
+      "@aws-sdk/signature-v4"
+    ]
   },
 })
