@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@import "../../Theme.css";
+
+
+.loginContainer {
+    @apply flex flex-col max-w-md mx-auto justify-center mt-8 p-4 bg-primary border-accent-light border rounded-md shadow-md;
+}
+
+.heading {
+    @apply text-subtitle font-semibold mb-4 text-center;
+} 
+
+.label {
+    @apply block mb-2 text-regular font-medium text-secondary;
+}
+
+.emailInput {
+    @apply block w-full p-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent;
+}
+
+.passwordInput {
+    @apply block w-full p-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent;
+}
+
+.error {
+    @apply text-red-500 mb-4;
+}
+
+.submitButton {
+     @apply block max-w-24 ml-auto px-3 py-2 font-medium bg-primary-dark text-secondary-dark rounded hover:bg-accent-light;
+}

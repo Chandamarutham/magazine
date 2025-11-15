@@ -2,23 +2,31 @@ import styles from './MobileMenu.module.css';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { topMenuItems } from './MenuData';
+import { Link } from 'react-router-dom';
 
-export default function MobileMenuDropDown({ handleItemClick ,  setIsMenuOpen ,  isMenuOpen }) {
+export default function MobileMenuDropDown({ setIsMenuOpen, isMenuOpen }) {
+    const isAuthenticated = typeof window !== 'undefined' && sessionStorage.getItem('isAdmin') === 'true';
+
     return (
         <>
             <div className={styles.mobileTopBar}>
-                {topMenuItems.map((item) => (
-                    (
-                        item.show === 'always' &&
-                        <a
+                {topMenuItems
+                    .filter(item => (
+                        // show 'admin-always' for authenticated users, otherwise 'always'
+                        isAuthenticated ? item.show === 'admin-always' : item.show === 'always'
+                    ))
+                    .map((item) => (
+                        <Link
                             key={item.name}
-                            onClick={() => handleItemClick(item.code)}
+                            to={item.href || '#'}
+                            onClick={() => {
+                                setIsMenuOpen(false);
+                            }}
                             className={styles.mobileNavItem}
                         >
                             {item.name}
-                        </a>
-                    )
-                ))}
+                        </Link>
+                    ))}
             </div>
             <button
                 className={styles.mobileMenuButton}
@@ -27,6 +35,6 @@ export default function MobileMenuDropDown({ handleItemClick ,  setIsMenuOpen , 
             >
                 <FontAwesomeIcon icon={faBars} className={styles.menuIcon} />
             </button>
-        </ >
+        </>
     );
 }

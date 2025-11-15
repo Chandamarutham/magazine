@@ -24,6 +24,8 @@ import EventsPage from './EventsPage/EventsPage';
 import AdForm from './AdForm/AdForm';
 import ErrorReportForm from './ErrorReportForm/ErrorReportForm';
 
+import LoginPage from './LoginPage/LoginPage';
+
 export default function ActivePage({ pageId }) {
     return (
         <div className={styles.container}>
@@ -44,6 +46,8 @@ export default function ActivePage({ pageId }) {
 
             {pageId === 13 && <AdForm />}
             {pageId === 14 && <ErrorReportForm />}
+
+            {pageId === 0 && <LoginPage />}
         </div>
     );
 }
