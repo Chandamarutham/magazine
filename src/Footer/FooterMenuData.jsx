@@ -18,7 +18,7 @@ export const footerMenu2Items = [
 export const footerMenu3Items = [
     { name: 'Write to us', code: 'mailto:editor@kkcp.chandamarutham.org', type: 'href', icon: faEnvelope, href: 'mail' },
     { name: 'Advertise', code: 13, type: 'internal', icon: null, href: '/advertise' },
-    { name: 'Report  Error', code: 14, type: 'internal', icon: null, href: '/report-error' },
+    { name: 'Report  Error', code: 14, type: 'internal', icon: null, href: '/feedback' },
     { name: 'Facebook', code: 'https://www.facebook.com/share/19rFekfEtC/?mibextid=wwXIfr', type: 'href', icon: faFacebookF, href: 'fb' },
 ];
 

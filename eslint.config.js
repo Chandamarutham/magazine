@@ -13,9 +13,17 @@ export default defineConfig([
       reactHooks.configs['recommended-latest'],
       reactRefresh.configs.vite,
     ],
+    env: {
+      browser: true,
+      es2021: true,
+      node: true
+    },
+    globals: {
+      ...globals.browser,
+      process: 'readonly',
+    },
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser,
       parserOptions: {
         ecmaVersion: 'latest',
         ecmaFeatures: { jsx: true },
@@ -25,5 +33,5 @@ export default defineConfig([
     rules: {
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
     },
-  },
+  }
 ])

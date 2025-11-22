@@ -6,8 +6,10 @@
   --color-contrast: rgba(255, 0, 31, 0.6);
   --color-contrast-light: rgba(255, 127, 255, 0.75);
   --color-contrast-dark: rgba(156, 47, 156, 1);
-  --color-light-indigo: #e0e7ff;
+  --color-error: #ef4444;
+
   --color-deep-navy: #0f1724;
+  --color-light-indigo: #e0e7ff;
   --color-panel: #0b1220;
 
   --color-secondary: rgba(89, 73, 232, 1);

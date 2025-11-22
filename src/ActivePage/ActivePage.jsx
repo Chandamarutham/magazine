@@ -1,14 +1,13 @@
+import { useCredentials } from '../lib/Credentials';
 import styles from './ActivePage.module.css';
 
 
 /* Main Menu Components */
 import HomePage from './HomePage/HomePage';
 import ReadPage from './ReadPage/ReadPage';
-import ComingSoonPage from './ComingSoonPage/ComingSoonPage';
 import PhotosPage from './PhotosPage/PhotosPage';
-/* import AskForm from './AskForm/AskForm'; */
-import QueryPage from './QueryForm/QueryForm';
-import SubscriptionForm from './SubscriptionForm/SubscriptionForm';
+import QueryPage from './QueryPage/QueryForm';
+import SubscribeForm from './SubscribePage/SubscribeForm';
 import ListenPage from './ListenPage/ListenPage';
 import ContributePage from './ContributePage/ContributePage';
 
@@ -24,18 +23,24 @@ import EventsPage from './EventsPage/EventsPage';
 /* Footer Third Column Components */
 /*
 import AdForm from './AdForm/AdForm';*/
-import AdvertiserForm from './AdvertiserForm/AdvertiserForm';
+import AdvertiserForm from './AdvertisePage/AdvertiseForm';
+import FeedbackForm from './FeedbackPage/FeedbackForm';
 
+/* Admin Page Components */
 import LoginPage from './LoginPage/LoginPage';
 
 export default function ActivePage({ pageId }) {
+    const credentialsData = useCredentials();
+    if (credentialsData.error) {
+        return <div className={styles.error}>Error loading credentials: {credentialsData.error.message}</div>;
+    }
     return (
         <div className={styles.container}>
             {pageId === 1 && <HomePage />}
             {pageId === 2 && <ReadPage />}
             {pageId === 3 && <ListenPage />}
-            {pageId === 4 && <SubscriptionForm />}
-            {pageId === 5 && <QueryPage />}
+            {pageId === 4 && <SubscribeForm getValidCredentials={credentialsData.getValidCredentials} />}
+            {pageId === 5 && <QueryPage getValidCredentials={credentialsData.getValidCredentials} />}
             {pageId === 6 && <PhotosPage />}
             {pageId === 7 && <ContributePage />}
 
@@ -46,8 +51,8 @@ export default function ActivePage({ pageId }) {
             {pageId === 11 && <ThaniyanPage />}
             {pageId === 12 && <EventsPage />}
 
-            {pageId === 13 && <AdvertiserForm />}
-            {pageId === 14 && <NewErrorReportPage />}
+            {pageId === 13 && <AdvertiserForm getValidCredentials={credentialsData.getValidCredentials} />}
+            {pageId === 14 && <FeedbackForm getValidCredentials={credentialsData.getValidCredentials} />}
 
             {pageId === 0 && <LoginPage />}
         </div>
