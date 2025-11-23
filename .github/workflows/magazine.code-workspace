@@ -10,5 +10,54 @@
       "path": "../../../csvtojson"
     }
   ],
-  "settings": {}
+  "settings": {},
+  "launch": {
+    "configurations": [
+      {
+        "type": "aws-sam",
+        "request": "direct-invoke",
+        "name": "feedback-handler:lambda_function.lambda_handler (python3.14)",
+        "invokeTarget": {
+          "target": "code",
+          "projectRoot": "/Users/balaji/GitHub/aws/feedback-handler",
+          "lambdaHandler": "lambda_function.lambda_handler"
+        },
+        "lambda": {
+          "runtime": "python3.14",
+          "payload": {},
+          "environmentVariables": {}
+        }
+      },
+      {
+        "type": "aws-sam",
+        "request": "direct-invoke",
+        "name": "credentials_middleware:lambda_function.lambda_handler (python3.14)",
+        "invokeTarget": {
+          "target": "code",
+          "projectRoot": "credentials_middleware",
+          "lambdaHandler": "lambda_function.lambda_handler"
+        },
+        "lambda": {
+          "runtime": "python3.14",
+          "payload": {},
+          "environmentVariables": {}
+        }
+      },
+      {
+        "type": "aws-sam",
+        "request": "direct-invoke",
+        "name": "advertiser-handler:lambda_function.lambda_handler (python3.14)",
+        "invokeTarget": {
+          "target": "code",
+          "projectRoot": "advertiser-handler",
+          "lambdaHandler": "lambda_function.lambda_handler"
+        },
+        "lambda": {
+          "runtime": "python3.14",
+          "payload": {},
+          "environmentVariables": {}
+        }
+      }
+    ]
+  }
 }

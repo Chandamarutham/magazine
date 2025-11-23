@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { PostFormData } from '../../lib/PostFormData';
 import styles from './FeedbackForm.module.css';
 
@@ -20,7 +20,7 @@ export default function FeedbackForm({ getValidCredentials }) {
     const [showError, setShowError] = useState(false); // Error message visibility for the form submission
     const [errorMessage, setErrorMessage] = useState(""); // Error message content for the form submission
 
-    {/* Effects Section */ }
+    /* Effects Section */
     // Nothing in this form
 
     /* Helpers Section */
@@ -56,8 +56,8 @@ export default function FeedbackForm({ getValidCredentials }) {
 
         if (!formData.details_of_error.trim()) {
             newErrors.details_of_error = 'Error details are required';
-        } else if (formData.details_of_error.length > fields.find(f => f.name === 'details_of_error').maxLength) {
-            newErrors.details_of_error = `Error details must be ${fields.find(f => f.name === 'details_of_error').maxLength} characters or less`;
+        } else if (formData.details_of_error.length > 1000) {
+            newErrors.details_of_error = `Error details must be 1000 characters or less`;
         }
 
         if (!formData.location_of_error.trim()) {
@@ -124,7 +124,7 @@ export default function FeedbackForm({ getValidCredentials }) {
                 setErrorMessage("Failed to submit feedback. Try again later.");
                 setTimeout(() => setShowError(false), 5000);
             } else {
-                resetForm();
+                resetFormFields();
                 setShowSuccess(true);
                 setSuccessMessage("Thank you for your feedback!");
                 setTimeout(() => setShowSuccess(false), 5000);
@@ -144,10 +144,6 @@ export default function FeedbackForm({ getValidCredentials }) {
                 {/* Form Title and Form-level Messages */}
                 <h2 className={styles.formTitle}>Feedback Form</h2>
                 <p className={styles.formSubtitle}>We value your feedback to improve our magazine.</p>
-                {showSuccess && <div className={styles.successMessage}><p>{successMessage}</p></div>}
-                {showError && <div className={styles.errorMessage}><p>{errorMessage}</p></div>}
-                {showError && <p>{errorMessage}</p>}
-
                 <form onSubmit={handleSubmit} className={styles.form}>
                     {/* Form Fields */}
                     {/* Issue Date Field */}
@@ -257,7 +253,7 @@ export default function FeedbackForm({ getValidCredentials }) {
                             className={`${styles.submitButton} ${isSubmitting ? styles.buttonDisabled : ''}`}
                             disabled={isSubmitting}
                         >
-                            {isSubmitting ? 'Sending...' : 'Subscribe'}
+                            {isSubmitting ? 'Sending...' : 'Report'}
                         </button>
 
                         {/* Clear Button */}
@@ -270,6 +266,8 @@ export default function FeedbackForm({ getValidCredentials }) {
                             Clear Form
                         </button>
                     </div>
+                    {showSuccess && <div className={styles.successMessage}><p>{successMessage}</p></div>}
+                    {showError && <div className={styles.errorMessage}><p>{errorMessage}</p></div>}
                 </form>
             </div>
         </div>

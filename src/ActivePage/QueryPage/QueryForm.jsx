@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { PostFormData } from '../../lib/PostFormData';
 import styles from './QueryForm.module.css';
 
@@ -12,16 +12,19 @@ export default function QueryForm({ getValidCredentials }) {
         name_of_person: '',
         name_of_city: '',
         email_or_phone: '',
-    });
-    const [errors, setErrors] = useState({});
-    const [showSuccess, setShowSuccess] = useState(false);
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    }); // Form field value
+    const [errors, setErrors] = useState({}); // Validation errors & Field-specific errors
+    const [isSubmitting, setIsSubmitting] = useState(false); // Submission state
+    const [showSuccess, setShowSuccess] = useState(false); // Success message visibility for the form submission
+    const [successMessage, setSuccessMessage] = useState(""); // Success message content for the form submission
+    const [showError, setShowError] = useState(false); // Error message visibility for the form submission
+    const [errorMessage, setErrorMessage] = useState(""); // Error message content for the form submission
 
-    {/* Effect Section */ }
+    /* Effect Section */ 
     // Nothing in this form
 
     /* Helpers Section */
-    const resetForm = () => {
+    const resetFormFields = () => {
         setFormData({
             query_topic: '',
             question_asked: '',
@@ -29,10 +32,19 @@ export default function QueryForm({ getValidCredentials }) {
             name_of_city: '',
             email_or_phone: '',
         });
+    }
+
+    // Reset controlling states
+    const resetControllingStates = () => {
         setErrors({});
         setShowSuccess(false);
+        setSuccessMessage("");
+        setShowError(false);
+        setErrorMessage("");
+        setIsSubmitting(false);
     };
 
+    // Validation of form fields
     const validateForm = () => {
         const newErrors = {};
 
@@ -57,6 +69,7 @@ export default function QueryForm({ getValidCredentials }) {
         return Object.keys(newErrors).length === 0;
     };
 
+    // Handling changes in input - nothing spectacular in this form
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({
@@ -73,17 +86,21 @@ export default function QueryForm({ getValidCredentials }) {
         }
     };
 
+    // Handling form reset when the Clear Form button is clicked
     const handleReset = (e) => {
         e.preventDefault();
-        resetForm();
+        resetFormFields();
+        resetControllingStates();
     };
 
+    // Submitting form data
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        resetControllingStates();
         setIsSubmitting(true);
-        setShowSuccess(false);
-        setErrors({});
-        
+
+        // Validate form before submission
         if (!validateForm()) {
             setIsSubmitting(false);
             return;
@@ -96,20 +113,21 @@ export default function QueryForm({ getValidCredentials }) {
                 getValidCredentials
             );
             if (!response.ok) {
-                setShowSuccess(false);
-                setIsSubmitting(false);
-                throw new Error('Failure to submit the query');
+                setShowError(true);
+                setErrorMessage("Failed to submit query. Try again later.");
+                setTimeout(() => setShowError(false), 5000);
             } else {
-                resetForm();
+                resetFormFields();
                 setShowSuccess(true);
-                setIsSubmitting(false);
-                // Let's set a timeout to hide the success message after 5 seconds
+                setSuccessMessage("Thank you for your question!");
                 setTimeout(() => setShowSuccess(false), 5000);
             }
         } catch (error) {
-            console.error('Form submission error:', error);
+            setShowError(true);
+            setErrorMessage("Failed to submit query. Try again later.");
+            setTimeout(() => setShowError(false), 5000);
+        } finally {
             setIsSubmitting(false);
-            setTimeout(() => resetForm(), 5000);
         }
     };
     return (
@@ -117,8 +135,6 @@ export default function QueryForm({ getValidCredentials }) {
             <div className={styles.formBox}>
                 <h2 className={styles.formTamilTitle}>ஶ்ரீவைஷ்ணவம் பற்றிய கேள்விகள்</h2>
                 <p className={styles.formSubtitle}>Ask any questions / doubts you have about Srivaishnavism. We will take those questions to scholars, get their responses and may publish them in the magazine with your name & city</p>
-                {showSuccess && <div className={styles.successMessage}>Thank you for your query!</div>}
-                {errors.submit && <div className={styles.errorMessage}>{errors.submit}</div>}
                 <form onSubmit={handleSubmit} className={styles.form}>
                     {/* Query Topic Field */}
                     <div className={styles.formGroup}>
@@ -147,7 +163,7 @@ export default function QueryForm({ getValidCredentials }) {
                             name='question_asked'
                             value={formData.question_asked}
                             onChange={handleInputChange}
-                            placeholder="Please describe the error you found (maximum 1000 characters)"
+                            placeholder="Please enter the  question (maximum 1000 characters)"
                             rows="8"
                             maxLength={1000}
                             className={`${styles.textarea} ${errors.question_asked ? styles.inputError : ''}`}
@@ -231,6 +247,8 @@ export default function QueryForm({ getValidCredentials }) {
                             Clear Form
                         </button>
                     </div>
+                    {showSuccess && <div className={styles.successMessage}><p>{successMessage}</p></div>}
+                    {showError && <div className={styles.errorMessage}><p>{errorMessage}</p></div>}
                 </form>
             </div>
         </div>

@@ -25,30 +25,29 @@ export default function SubscribeForm({ getValidCredentials }) {
         interests: '',
         authorise_to_contact: false
     });
-    const [errors, setErrors] = useState({});
-    const [successMessage, setSuccessMessage] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
-    const [showSuccess, setShowSuccess] = useState(false);
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [showAcharyanDetails, setShowAcharyanDetails] = useState(false);
-    const [showOtherInterests, setShowOtherInterests] = useState(false);
-    const [interestsList, setInterestsList] = useState([]);
-    const [otherInterests, setOtherInterests] = useState('');
+    const [errors, setErrors] = useState({}); // Validation errors & Field-specific errors
+    const [isSubmitting, setIsSubmitting] = useState(false); // Submission state
+    const [showSuccess, setShowSuccess] = useState(false); // Success message visibility for the form submission
+    const [successMessage, setSuccessMessage] = useState(""); // Success message content for the form submission
+    const [showError, setShowError] = useState(false); // Error message visibility for the form submission
+    const [errorMessage, setErrorMessage] = useState(""); // Error message content for the form submission
 
-    {/* Some pre-treatment and status definitions for phone number */ }
-    const [countryCode, setCountryCode] = useState('+91');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    formData.phone_number = `${countryCode} ${phoneNumber}`;
+    const [showAcharyanDetails, setShowAcharyanDetails] = useState(false); // This will be set to true based on Samashrayanam details
+    const [showOtherInterests, setShowOtherInterests] = useState(false); // This will be set to true if "Other" checkbox is clicked
+    const [interestsList, setInterestsList] = useState([]);  // This is needed to manage the interest list from the checkboxes
+    const [otherInterests, setOtherInterests] = useState(''); // This is for the other interest textbox
+    const [countryCode, setCountryCode] = useState('+91'); // The country code drop box feeds this
+    const [phoneNumber, setPhoneNumber] = useState(''); // The Phone number text box feeds this
+
+    {/* Some pre-treatment for country codes nd country list */ }
     const countryCodeOptions = countryCodes.countryCodes.map(({ callingCode, name }) => ({
         label: `(${callingCode}) ${name} `,
         value: callingCode
     }));
     const countryOptions = countryCodes.countryCodes.map(({ name }) => name);
 
-    {/* --------------------- */ }
     {/* Use Effect Hooks      */ }
-    {/* --------------------- */ }
-    {/* Update phone number in formData when country code or phone number changes */ }
+    // Effect to concatenate country code with phone number
     useEffect(() => {
         setFormData(prev => ({
             ...prev,
@@ -56,19 +55,21 @@ export default function SubscribeForm({ getValidCredentials }) {
         }));
     }, [countryCode, phoneNumber]);
 
-
-    {/* ------- End of Effect Hooks ---------- */ }
-
-    {/* Helper Functions */ }
-    const getInterestsString = () => {
-        let interests_list = [...interestsList];
+    // Effect to create and keep the interest list as a colon delimited string
+    useEffect(() => {
+        let interests_list = [...interestsList]; // Take the current interests list
         if (showOtherInterests && otherInterests.trim() !== '') {
             interests_list.push(otherInterests.trim());
-        }
-        return interests_list.join(':');
-    };
+        } // Append other interests if specified
+        setFormData(prev => ({
+            ...prev,
+            interests: interests_list.join(':') // Convert into a colon delimited string to send to form
+        }));
 
-    const resetForm = () => {
+    }, [interestsList, otherInterests]);
+
+    {/* Helper Functions */ }
+    const resetFormFields = () => {
         setFormData({
             full_name: '',
             email_address: '',
@@ -86,15 +87,28 @@ export default function SubscribeForm({ getValidCredentials }) {
             interests: '',
             authorise_to_contact: false
         });
+
+    };
+
+    // Reset controlling states
+    const resetControllingStates = () => {
+        setErrors({});
+        setShowSuccess(false);
+        setSuccessMessage("");
+        setShowError(false);
+        setErrorMessage("");
+        setIsSubmitting(false);
+
+        // Form specific inputs
         setInterestsList([]);
         setOtherInterests('');
         setShowOtherInterests(false);
         setShowAcharyanDetails(false);
-        setErrors({});
-        setSuccessMessage('');
-        setErrorMessage('');
+        setCountryCode('+91');
+        setPhoneNumber('');
     };
 
+    // Validate data entered in form
     const validateForm = () => {
         const newErrors = {};
 
@@ -174,6 +188,7 @@ export default function SubscribeForm({ getValidCredentials }) {
         return Object.keys(newErrors).length === 0;
     };
 
+    // Handle changes when data is entered in the form
     const handleInputChange = (e) => {
         // Handle checkbox inputs for interests
         const { name, value, type, checked } = e.target;
@@ -239,27 +254,52 @@ export default function SubscribeForm({ getValidCredentials }) {
         }
     };
 
+    // Reset all fields when the Clear Form button is clicked
     const handleReset = (e) => {
         e.preventDefault();
-        resetForm();
+        resetFormFields();
+        resetControllingStates();
     };
 
+    // Submit data to form
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const interestsString = getInterestsString();
 
-        const updatedFormData = {
-            ...formData,
-            interests: interestsString
-        };
+        resetControllingStates();
+        setIsSubmitting(true);
 
-        setFormData(updatedFormData);
+        // Validate form before submission
+        if (!validateForm()) {
+            setIsSubmitting(false);
+            return;
+        }
 
-        // Validate using updated data object
-        const isValid = validateForm();
-
-        if (isValid) {
-            console.log("Submitting form with data:", updatedFormData);
+        try {
+            const response = await PostFormData(
+                relative_url,
+                formData,
+                getValidCredentials
+            );
+            if (!response.ok) {
+                setShowError(true);
+                if (response.status === 409) {
+                    setErrorMessage("You are already subscribed.");
+                } else {
+                    setErrorMessage("Failed to submit request. Try again later.");
+                }
+                setTimeout(() => setShowError(false), 5000);
+            } else {
+                resetFormFields();
+                setShowSuccess(true);
+                setSuccessMessage("Thank you for subscription!");
+                setTimeout(() => setShowSuccess(false), 5000);
+            }
+        } catch (error) {
+            setShowError(true);
+            setErrorMessage("Failed to submit request. Try again later.");
+            setTimeout(() => setShowError(false), 5000);
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -269,8 +309,6 @@ export default function SubscribeForm({ getValidCredentials }) {
             <div className={styles.formBox}>
                 <h2 className={styles.formTitle}>Subscribe to Our Magazine</h2>
                 <p className={styles.formSubtitle}>Join our community and learn more about out Sampradayam.</p>
-                {showSuccess && <div className={styles.successMessage}>{successMessage}</div>}
-                {errors.submit && <div className={styles.errorMessage}>{errors.submit}</div>}
                 {/* Subscription Form */}
                 <form className={styles.form} onSubmit={handleSubmit}>
                     {/* -------------------------------------------------------------------------------------------- */}
@@ -661,6 +699,8 @@ export default function SubscribeForm({ getValidCredentials }) {
                             Clear Form
                         </button>
                     </div>
+                    {showSuccess && <div className={styles.successMessage}><p>{successMessage}</p></div>}
+                    {showError && <div className={styles.errorMessage}><p>{errorMessage}</p></div>}
                 </form>
             </div>
         </div >

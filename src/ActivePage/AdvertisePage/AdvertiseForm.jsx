@@ -32,7 +32,7 @@ export default function AdvertiseForm({ getValidCredentials }) {
     const [showError, setShowError] = useState(false); // Whether to show error message
     const [isSubmitting, setIsSubmitting] = useState(false); // Submission state
 
-    {/* Effect Section */ }
+    /* Effect Section */
     // Nothing in this form
 
     /* Helpers Section */
@@ -144,12 +144,16 @@ export default function AdvertiseForm({ getValidCredentials }) {
             );
             if (!response.ok) {
                 setShowError(true);
-                setErrorMessage("Failed to submit form. Try again later.");
+                if (response.status === 409) {
+                    setErrorMessage("You are already registered.");
+                } else {
+                    setErrorMessage("Failed to submit request. Try again later.");
+                }
                 setTimeout(() => setShowError(false), 5000);
             } else {
-                resetForm();
+                resetFormFields();
                 setShowSuccess(true);
-                setSuccessMessage("Thank you for your feedback!");
+                setSuccessMessage("Thank you for your interest!");
                 setTimeout(() => setShowSuccess(false), 5000);
             }
         } catch (error) {
@@ -166,8 +170,6 @@ export default function AdvertiseForm({ getValidCredentials }) {
             <div className={styles.formBox}>
                 <h2 className={styles.formTitle}>Advertise with Us</h2>
                 <p className={styles.formSubtitle}>Reach a targeted audience by advertising in our magazine. Please fill out the form below and our team will get back to you with more details.</p>
-                {showSuccess && <div className={styles.successMessage}><p>{successMessage}</p></div>}
-                {showError && <div className={styles.errorMessage}><p>{errorMessage}</p></div>}
                 <form onSubmit={handleSubmit} className={styles.form}>
 
                     {/* Group #1: Advertising Interest */}
@@ -394,9 +396,10 @@ export default function AdvertiseForm({ getValidCredentials }) {
                             Clear Form
                         </button>
                     </div>
+                    {showSuccess && <div className={styles.successMessage}><p>{successMessage}</p></div>}
+                    {showError && <div className={styles.errorMessage}><p>{errorMessage}</p></div>}
                 </form >
             </div >
         </div >
     );
-
 };
