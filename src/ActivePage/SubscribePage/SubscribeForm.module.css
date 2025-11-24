@@ -163,7 +163,7 @@
 }
 
 .phoneInput {
-  @apply flex-1;
+  @apply flex-1 min-w-0;
 }
 
 .extraInterestsRow {

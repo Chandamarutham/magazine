@@ -6,15 +6,12 @@
   "homepage": "https://chandamarutham.github.io/magazine/",
   "scripts": {
     "dev": "vite",
-    "build": "npm run validate-config && vite build",
-    "build-skip-validation": "vite build",
+    "build": "vite build",
+    "postbuild": "cp dist/index.html dist/404.html",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist",
-    "predeploy": "echo 'Running deploy...'",
-    "setup-config": "node \"Amazon AWS/guides/setup-config.js\"",
-    "validate-config": "node -e \"import('./src/lib/configValidator.js').then(m => m.printConfigurationReport())\"",
-    "validate-env": "node -e \"import('./src/lib/configValidator.js').then(m => { const result = m.validateConfiguration(); if (!result.isValid) { console.error('❌ Configuration validation failed'); process.exit(1); } console.log('✅ Configuration is valid'); })\""
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@aws-sdk/client-cognito-identity": "^3.932.0",

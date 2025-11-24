@@ -7,7 +7,7 @@ export default function IssuesList({ setSelected }) {
             <h2 className={styles.heading}>Read Past Issues</h2>
             <ul className={styles.list}>
                 {PdfList.map((p, index) => (
-                    <li key={p.filename} className={styles.listItem}>
+                    <li key={`${p.filename}_${index}`} className={styles.listItem}>
                         <button
                             className={styles.openButton}
                             onClick={() => setSelected(p)}

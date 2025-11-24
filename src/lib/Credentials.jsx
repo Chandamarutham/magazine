@@ -17,6 +17,7 @@ export function useCredentials() {
         setError(null);
         try {
             const response = await fetch(`${baseUrl}${relativeUrl}`, { method: 'GET' });
+            console.log(response);
             if (!response.ok) throw new Error('Failed to fetch credentials');
             const data = await response.json();
             const body = JSON.parse(data.body);

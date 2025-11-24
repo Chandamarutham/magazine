@@ -88,7 +88,13 @@ export default function SubscribeForm({ getValidCredentials }) {
             authorise_to_contact: false
         });
 
-    };
+        // Form specific inputs
+        setInterestsList([]);
+        setOtherInterests('');
+        setShowOtherInterests(false);
+        setShowAcharyanDetails(false);
+        setCountryCode('+91');
+        setPhoneNumber('');    };
 
     // Reset controlling states
     const resetControllingStates = () => {
@@ -98,14 +104,6 @@ export default function SubscribeForm({ getValidCredentials }) {
         setShowError(false);
         setErrorMessage("");
         setIsSubmitting(false);
-
-        // Form specific inputs
-        setInterestsList([]);
-        setOtherInterests('');
-        setShowOtherInterests(false);
-        setShowAcharyanDetails(false);
-        setCountryCode('+91');
-        setPhoneNumber('');
     };
 
     // Validate data entered in form

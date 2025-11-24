@@ -16,10 +16,25 @@
       {
         "type": "aws-sam",
         "request": "direct-invoke",
+        "name": "subscribe-handler:lambda_function.lambda_handler (python3.14)",
+        "invokeTarget": {
+          "target": "code",
+          "projectRoot": "/Users/balaji/GitHub/aws/subscribe-handler",
+          "lambdaHandler": "lambda_function.lambda_handler"
+        },
+        "lambda": {
+          "runtime": "python3.14",
+          "payload": {},
+          "environmentVariables": {}
+        }
+      },
+      {
+        "type": "aws-sam",
+        "request": "direct-invoke",
         "name": "feedback-handler:lambda_function.lambda_handler (python3.14)",
         "invokeTarget": {
           "target": "code",
-          "projectRoot": "/Users/balaji/GitHub/aws/feedback-handler",
+          "projectRoot": "feedback-handler",
           "lambdaHandler": "lambda_function.lambda_handler"
         },
         "lambda": {
