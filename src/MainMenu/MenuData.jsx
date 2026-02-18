@@ -3,7 +3,6 @@ export const topMenuItems = [
     { name: 'Admin', code: 0, show: 'never', href: '/admin' },
     { name: 'Home', code: 1, show: 'always', href: '/' },
     { name: 'Read', code: 2, show: 'always', href: '/read' },
-    { name: 'Listen', code: 3, show: 'always', href: '/listen' },
     { name: 'Subscribe', code: 4, show: 'always', href: '/subscribe' },
     { name: 'Ask', code: 5, show: 'large-only', href: '/query' },
     { name: 'Photos', code: 6, show: 'large-only', href: '/photos' },

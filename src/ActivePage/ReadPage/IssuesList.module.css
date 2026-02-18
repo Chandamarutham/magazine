@@ -19,7 +19,7 @@
 }
 
 .openButton {
-  @apply text-left px-3 py-3.5 font-tamil text-regular cursor-pointer;
+  @apply text-left px-3 font-tamil text-regular cursor-pointer;
 }
 
 .serialNumber {
