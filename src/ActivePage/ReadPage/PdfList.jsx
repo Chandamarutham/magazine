@@ -116,7 +116,7 @@ export const PdfList = [
         ],
     },
     {
-        title: 'இதழ் 3 (பராபவ/சித்திரை - April, 2023)',
+        title: 'இதழ் 3 (பராபவ/சித்திரை - April, 2026)',
         id: '003',
         articles: [
             {
